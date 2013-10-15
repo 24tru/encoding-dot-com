@@ -1,7 +1,7 @@
 module EncodingDotCom
   # A Thumbnail output format
   class ThumbnailFormat < Format #:nodoc:
-    allowed_attributes :output, :time, :width, :height, :destination
+    allowed_attributes :output, :time, :width, :height, :destination, :rotate
 
     # Creates a new ThumbnailFormat. You should be calling
     # Format.create(attributes) rather than this constructor directly.
