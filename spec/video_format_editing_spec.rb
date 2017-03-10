@@ -78,5 +78,16 @@ describe "Encoding.com video format" do
       lambda { EncodingDotCom::VideoFormat.new(output: "flv", text_overlay: {overlay_x: 30, font_source: "http://www.example.com", text: 'foo'}) }.should_not raise_error
     end
 
+    it 'creates an audio_stream node for audio stream attributes' do
+      format =
+        EncodingDotCom::VideoFormat.new(
+          output: "flv",
+          audio_stream: { use_stream_id: 1 }
+        )
+
+      xml = Nokogiri::XML::Builder.new { |b| format.build_xml(b) }.to_xml
+
+      xml.should have_xpath("/format/audio_stream/use_stream_id[text()='1']")
+    end
   end
 end

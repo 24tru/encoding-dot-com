@@ -13,6 +13,8 @@ module EncodingDotCom
     #Audio Settings
     allowed_attributes :audio_codec, :audio_bitrate, :audio_sample_rate, :audio_channels_number, :audio_volume, :audio_normalization, :audio_sync
     boolean_attributes :acbr
+    #Audio Multitrack Settings
+    allowed_attributes :audio_stream, :use_stream_id
     #Output Destinations
     allowed_attributes :destination
     #Other Output Format Options
