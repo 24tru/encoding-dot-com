@@ -72,7 +72,11 @@ module EncodingDotCom
           if self.class.allowed_attributes.include? key.to_s
             #if the value is a hash, recursivley call this function until the xml is properly built
             value = output_value(key, value)
-            if value.kind_of?(Hash)
+            if value.kind_of?(Array)
+              value.each do |value|
+                build_node builder, key, value
+              end
+            elsif value.kind_of?(Hash)
               build_node builder, key, value
             else
               # adding underscore after the key to force it to be a tag instead of matching nokogiri functions
