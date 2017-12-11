@@ -74,7 +74,7 @@ module EncodingDotCom
             value = output_value(key, value)
             if value.kind_of?(Array)
               value.each do |value|
-                build_node builder, key, value
+                builder.send("#{key}_", value) unless value.nil?
               end
             elsif value.kind_of?(Hash)
               build_node builder, key, value
