@@ -176,8 +176,10 @@ describe "Encoding.com video format" do
 
   describe 'setting array attributes on a format' do
     it 'should create an array attibute' do
-      format = EncodingDotCom::VideoFormat.new('output' => 'wmv', 'audio_stream' => ['', '']) 
-      binding.pry
+      format = EncodingDotCom::VideoFormat.new(
+        'output' => 'wmv',
+        'audio_stream' => ['', '']
+      )
       Nokogiri::XML::Builder.new do |b|
         format.build_xml(b)
       end.to_xml.should have_xpath('/format/audio_stream')
