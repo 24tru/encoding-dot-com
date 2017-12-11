@@ -75,8 +75,8 @@ module EncodingDotCom
             if value.kind_of?(Hash)
               build_node builder, key, value
             elsif value.kind_of?(Array)
-              value.each do |value|
-                builder.send("#{key}_", value) unless value.nil?
+              value.each do |v|
+                builder.send("#{key}_", v) unless v.nil?
               end
             else
               # adding underscore after the key to force it to be a tag instead of matching nokogiri functions
