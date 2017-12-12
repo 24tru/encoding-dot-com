@@ -186,5 +186,18 @@ describe "Encoding.com video format" do
 
       Nokogiri::XML(content).xpath('/format/audio_stream').count.should be(2)
     end
+
+    it 'should create multiple nodes from key name for each value' do
+      format = EncodingDotCom::VideoFormat.new(
+        'output' => 'wmv',
+        'audio_stream' => [
+          {'language' => 'eng', 'use_stream_id' => '1'}
+        ]
+      )
+      content = Nokogiri::XML::Builder.new do |b|
+        format.build_xml(b)
+      end.to_xml
+      Nokogiri::XML(content).xpath('/format/audio_stream').count.should be(2)
+    end
   end
 end
