@@ -180,11 +180,11 @@ describe "Encoding.com video format" do
         'output' => 'wmv',
         'audio_stream' => ['', '']
       )
-      content = Nokogiri::XML::Builder.new do |b|
+      xml = Nokogiri::XML::Builder.new do |b|
         format.build_xml(b)
       end.to_xml
 
-      Nokogiri::XML(content).xpath('/format/audio_stream').count.should be(2)
+      Nokogiri::XML(xml).xpath('/format/audio_stream').count.should be(2)
     end
 
     it 'should create nested nodes from hash in an array' do
