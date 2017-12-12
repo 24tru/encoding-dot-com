@@ -180,9 +180,12 @@ describe "Encoding.com video format" do
         'output' => 'wmv',
         'audio_stream' => ['', '']
       )
-      Nokogiri::XML::Builder.new do |b|
+      content = Nokogiri::XML::Builder.new do |b|
         format.build_xml(b)
-      end.to_xml.should have_xpath('/format/audio_stream')
+      end.to_xml
+
+      content.should have_xpath('/format/audio_stream')
+      Nokogiri::XML(content).xpath('/format/audio_stream').count.should be(2)
     end
   end
 end
