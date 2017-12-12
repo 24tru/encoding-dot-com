@@ -184,7 +184,6 @@ describe "Encoding.com video format" do
         format.build_xml(b)
       end.to_xml
 
-      content.should have_xpath('/format/audio_stream')
       Nokogiri::XML(content).xpath('/format/audio_stream').count.should be(2)
     end
   end
