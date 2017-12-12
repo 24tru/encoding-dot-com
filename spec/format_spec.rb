@@ -175,7 +175,7 @@ describe "Encoding.com video format" do
   end
 
   describe 'setting array attributes on a format' do
-    it 'should create an array attibute' do
+    it 'should create multiple nodes from key name' do
       format = EncodingDotCom::VideoFormat.new(
         'output' => 'wmv',
         'audio_stream' => ['', '']
