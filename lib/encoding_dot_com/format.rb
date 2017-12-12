@@ -77,7 +77,11 @@ module EncodingDotCom
             # if the value is an array, loop through the array and add an xml node of the same key name for each value
             elsif value.kind_of?(Array)
               value.each do |v|
-                builder.send("#{key}_", v) unless v.nil?
+                if v.kind_of?(Hash) || v.kind_of?(Array)
+                  build_node builder, key, v
+                else
+                  builder.send("#{key}_", v) unless v.nil?
+                end
               end
             else
               # adding underscore after the key to force it to be a tag instead of matching nokogiri functions
