@@ -173,4 +173,33 @@ describe "Encoding.com video format" do
       ExampleFormat4.boolean_attributes.should == ["foo"]
     end
   end
+
+  describe 'setting array attributes on a format' do
+    it 'should create multiple nodes from key name for each value' do
+      format = EncodingDotCom::VideoFormat.new(
+        'output' => 'wmv',
+        'audio_stream' => ['', '']
+      )
+      xml = Nokogiri::XML::Builder.new do |b|
+        format.build_xml(b)
+      end.to_xml
+
+      Nokogiri::XML(xml).xpath('/format/audio_stream').count.should be(2)
+    end
+
+    it 'should create nested nodes from hash in an array' do
+      format = EncodingDotCom::VideoFormat.new(
+        'output' => 'wmv',
+        'audio_stream' => [
+          {'language' => 'eng', 'use_stream_id' => '1'}
+        ]
+      )
+      xml = Nokogiri::XML::Builder.new do |b|
+        format.build_xml(b)
+      end.to_xml
+
+      xml.should have_xpath('/format/audio_stream/language[text()="eng"]')
+      xml.should have_xpath('/format/audio_stream/use_stream_id[text()="1"]')
+    end
+  end
 end
