@@ -74,7 +74,7 @@ module EncodingDotCom
             value = output_value(key, value)
             if value.kind_of?(Hash)
               build_node builder, key, value
-            # if the value is an array, loop through the array and add an xml node of the same key name for each value
+            # if the value is an array, loop through the array and process each item based on its type
             elsif value.kind_of?(Array)
               value.each do |v|
                 if v.kind_of?(Hash) || v.kind_of?(Array)
