@@ -89,5 +89,17 @@ describe "Encoding.com video format" do
 
       xml.should have_xpath("/format/audio_stream/use_stream_id[text()='1']")
     end
+
+    it 'creates a channel node for stereo split' do
+      format =
+        EncodingDotCom::VideoFormat.new(
+          output: "mp4",
+          channel: { id: 'FC', in: { id: '1:1' } }
+        )
+
+      xml = Nokogiri::XML::Builder.new { |b| format.build_xml(b) }.to_xml
+      xml.should have_xpath("/format/channel/id=FC")
+      xml.should have_xpath("/format/channel/in/id=1:1")
+    end
   end
 end
