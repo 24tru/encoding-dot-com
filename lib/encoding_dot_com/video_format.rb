@@ -11,7 +11,7 @@ module EncodingDotCom
     allowed_attributes :size, :video_codec, :set_aspect_ratio, :bitrate, :maxrate, :minrate, :cbr, :framerate, :framerate_upper_threshold, :keyframe, :start, :duration
     boolean_attributes :keep_aspect_ratio, :cbr
     #Audio Settings
-    allowed_attributes :audio_codec, :audio_bitrate, :audio_sample_rate, :audio_channels_number, :audio_volume, :audio_normalization, :audio_sync
+    allowed_attributes :audio_codec, :audio_bitrate, :audio_sample_rate, :audio_channels_number, :audio_volume, :audio_normalization, :audio_sync, :channel, :id, :in
     boolean_attributes :acbr
     #Audio Multitrack Settings
     allowed_attributes :audio_stream, :use_stream_id
