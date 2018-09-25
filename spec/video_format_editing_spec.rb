@@ -94,7 +94,7 @@ describe "Encoding.com video format" do
       format =
         EncodingDotCom::VideoFormat.new(
           output: "mp4",
-          channel: { id: 'FC', in: { id: '1:1' } }
+          audio_stream: { channel: { id: 'FC', in: { id: '1:1' } }}
         )
 
       xml = Nokogiri::XML::Builder.new { |b| format.build_xml(b) }.to_xml
