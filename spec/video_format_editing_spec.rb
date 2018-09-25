@@ -99,8 +99,8 @@ describe "Encoding.com video format" do
 
       xml = Nokogiri::XML::Builder.new { |b| format.build_xml(b) }.to_xml
 
-      xml.should have_xpath("/format/channel/id[text()='FC']")
-      xml.should have_xpath("/format/channel/in/id[text()='1:1']")
+      xml.should have_xpath("/format/audio_stream/channel/id[text()='FC']")
+      xml.should have_xpath("/format/audio_stream/channel/in/id[text()='1:1']")
     end
   end
 end
