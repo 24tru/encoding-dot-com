@@ -94,13 +94,13 @@ describe "Encoding.com video format" do
       format =
         EncodingDotCom::VideoFormat.new(
           output: "mp4",
-          channel: { id: 'FC', in: { id: '1:1' } }
+          audio_stream: { channel: { id: 'FC', in: { id: '1:1' } }}
         )
 
       xml = Nokogiri::XML::Builder.new { |b| format.build_xml(b) }.to_xml
 
-      xml.should have_xpath("/format/channel/id[text()='FC']")
-      xml.should have_xpath("/format/channel/in/id[text()='1:1']")
+      xml.should have_xpath("/format/audio_stream/channel/id[text()='FC']")
+      xml.should have_xpath("/format/audio_stream/channel/in/id[text()='1:1']")
     end
   end
 end
